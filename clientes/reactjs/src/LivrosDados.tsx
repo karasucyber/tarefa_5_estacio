@@ -21,7 +21,7 @@ export default function LivroDados({ livros }: Props) {
   function cadastrarLivro(event: React.FormEvent) {
     event.preventDefault();
 
-    const novoLivro = new Livro(1, editora, titulo, resumo, autores);
+    const novoLivro = new Livro({ codigo: 1, codEditora: editora, titulo, resumo, autores });
     livros.incluir(novoLivro);
     navigate("/catalogo");
   }

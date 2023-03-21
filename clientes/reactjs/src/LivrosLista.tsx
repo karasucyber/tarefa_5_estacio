@@ -7,7 +7,7 @@ import Menu from "./Menu";
 
 type PropsLinhaLivro = {
   livro: Livro;
-  acervo: ControleLivro
+  acervo: ControleLivro;
   carregando: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -15,22 +15,21 @@ type Props = {
   livros: ControleLivro;
 };
 
-/* const livros = new ControleLivro(); */
-
-const LinhaLivro = ({ acervo, livro, carregando }: PropsLinhaLivro) => {
+const LinhaLivro = ({ acervo, livro, carregando, index }: PropsLinhaLivro & { index: number }) => {
   const editora = new ControleEditora();
 
   return (
     <React.Fragment>
-      <tr>
+      <tr key={index}>
         <th scope="row">
           <p>{livro.titulo}</p>
           <button
             type="button"
             className="btn btn-danger btn-sm"
             onClick={() => {
-              acervo.excluir(livro.codigo);
-              carregando(true);
+              acervo.excluir(livro.codigo).then(() => {
+                carregando(false);
+              });
             }}
           >
             Excluir
@@ -45,7 +44,7 @@ const LinhaLivro = ({ acervo, livro, carregando }: PropsLinhaLivro) => {
         <td>
           <ul>
             {livro.autores.map((nome) => {
-              return <li>{nome}</li>;
+              return <li key={nome}>{nome}</li>;
             })}
           </ul>
         </td>
@@ -55,13 +54,15 @@ const LinhaLivro = ({ acervo, livro, carregando }: PropsLinhaLivro) => {
 };
 
 export default function LivroLista({ livros }: Props) {
-  const [meusLivros, setMeusLivros] = useState<Livro[]>(livros.obterLivros());
-  const [carregando, setCarregando] = useState<boolean>(false);
+  const [meusLivros, setMeusLivros] = useState<Livro[]>([]);
+  const [carregando, setCarregando] = useState<boolean>(true);
 
   useEffect(() => {
-    setMeusLivros(livros.obterLivros());
-    setCarregando(false);
-  }, [carregando]);
+    livros.obterLivros().then((resultado) => {
+      setMeusLivros(resultado);
+      setCarregando(false);
+    });
+  }, []);
 
   return (
     <React.Fragment>
@@ -78,13 +79,14 @@ export default function LivroLista({ livros }: Props) {
             </tr>
           </thead>
           <tbody>
-            {meusLivros.map((livro) => {
+            {meusLivros.map((livro, index) => {
               return (
                 <LinhaLivro
                   key={livro.codigo}
-                  livro={livro} 
+                  livro={livro}
                   carregando={setCarregando}
                   acervo={livros}
+                  index={index}
                 />
               );
             })}

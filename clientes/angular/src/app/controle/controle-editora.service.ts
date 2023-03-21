@@ -6,18 +6,11 @@ import { Editora } from './editora';
 })
 export class ControleEditoraService {
   private editoras: Array<Editora> = [
-    {
-      codEditora: 1,
-      nome: 'palavras não faladas',
-  },
-  {
-      codEditora: 2,
-      nome: 'escritas não lidas',
-  },
-  {
-      codEditora: 3,
-      nome: 'palavras não ouvidas',
-  }
+    {nome: "escreve.com", codEditora:1},
+    
+    {nome: "palavras não faladas", codEditora:2},
+    
+    {nome: "palavras não escritas", codEditora:3},
   ];
 
   constructor() { }

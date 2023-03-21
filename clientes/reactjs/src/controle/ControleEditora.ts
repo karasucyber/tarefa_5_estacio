@@ -2,10 +2,11 @@ import { Editora } from "../modelo/Editora";
 
 export class ControleEditora {
   editoras: Editora[] = [
-    { nome: "Abril", codEditora: 1 },
-    { nome: "Veja", codEditora: 2 },
-    { nome: "Norte", codEditora: 3 },
-    { nome: "Atlas", codEditora: 4 },
+    {nome: "escreve.com", codEditora:1},
+    
+    {nome: "palavras não faladas", codEditora:2},
+    
+    {nome: "palavras não escritas", codEditora:3},
   ];
 
   getNomeEditora(cod: number) {
