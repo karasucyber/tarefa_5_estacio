@@ -1,13 +1,13 @@
 
 export class Livros {
 
-   public codigo: number;
+   public codigo: string | null;
    public codEditora: number;
    public  titulo: string;
     public resumo: string;
    public autores: string[];
 
-    constructor( codigo:number,titulo: string,resumo: string,autores: string[] 
+    constructor( codigo:string| null,titulo: string,resumo: string,autores: string[] 
 ,codEditora:number)
         
          {
