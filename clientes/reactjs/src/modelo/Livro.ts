@@ -1,12 +1,15 @@
 export class Livro {
-  _id: string | number;
+  JSONlivros(JSONlivros: any) {
+    throw new Error("Method not implemented.");
+  }
+  _id: number;
   codEditora: number;
   titulo: string;
   resumo: string;
   autores: string[];
 
   constructor(
-{ codigo, codEditora, titulo, resumo, autores }: { codigo: string | number; codEditora: number; titulo: string; resumo: string; autores: string[]; }  ) {
+{ codigo, codEditora, titulo, resumo, autores }: { codigo: number; codEditora: number; titulo: string; resumo: string; autores: string[]; }  ) {
     this._id = codigo;
     this.codEditora = codEditora;
     this.titulo = titulo;

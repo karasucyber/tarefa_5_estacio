@@ -32,7 +32,7 @@ export class ControleLivrosService {
     const url = 'http://localhost:3030/livros';
     const response = await fetch(url, { method: 'GET' });
     const livrosJSON = await response.json();
-    return livrosJSON.map((livrosJSON: string | null) => new Livro(livrosJSON));
+    return livrosJSON.map((livrosJSON: number | null) => new Livro(livrosJSON));
   }
 
 

@@ -30,7 +30,7 @@ export class ControleLivro {
   async obterLivros(): Promise<Livro[]> {
     const response = await fetch('suaURLBase', { method: 'GET' });
     const livrosJSON = await response.json();
-    const livros = livrosJSON.map((livroJSON: { codigo: string | number; codEditora: number; titulo: string; resumo: string; autores: string[]; }) => new Livro(livroJSON));
+    const livros = livrosJSON.map((livroJSON: { codigo: number; codEditora: number; titulo: string; resumo: string; autores: string[]; }) => new Livro(livroJSON));
     return livros;
   }
 

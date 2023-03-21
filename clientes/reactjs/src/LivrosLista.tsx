@@ -27,7 +27,7 @@ const LinhaLivro = ({ acervo, livro, carregando, index }: PropsLinhaLivro & { in
             type="button"
             className="btn btn-danger btn-sm"
             onClick={() => {
-              acervo.excluir(livro.codigo).then(() => {
+              acervo.excluir(livro._id).then(() => {
                 carregando(false);
               });
             }}
@@ -82,7 +82,6 @@ export default function LivroLista({ livros }: Props) {
             {meusLivros.map((livro, index) => {
               return (
                 <LinhaLivro
-                  key={livro.codigo}
                   livro={livro}
                   carregando={setCarregando}
                   acervo={livros}
